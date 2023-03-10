@@ -24,8 +24,20 @@ fn main() {
     let reader = std::io::BufReader::new(f);
 
     for line in reader.lines() {
-        if line.contains(&args.pattern) {
-            println!("{}", line);
+        // if line.contains(&args.pattern) {
+        //     println!("{}", line);
+        // }
+        match line {
+            Ok(val) => {
+                // println!("{}", val); 
+                if val.contains(&args.pattern) {
+                    println!("{}", val);
+                }
+            },
+            Err(err) => {
+               println!("An error has occurred reading the file:"); 
+               println!("{}", err) 
+            }
         }
     }
 }
